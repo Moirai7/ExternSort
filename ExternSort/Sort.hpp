@@ -18,10 +18,13 @@
 //#define NUM_SIZE 50
 using namespace std;
 
-//const unsigned long long NUM_SIZE = (unsigned long long)1 << 32;
+//const unsigned long long NUM_SIZE = (unsigned long long)1 << 31;
 const unsigned long long NUM_SIZE = 12;
+//const unsigned long long READ_SIZE = (unsigned long long)1 << 28;
 const unsigned long long READ_SIZE = 3;
+//const unsigned long long MERGE_SIZE = (unsigned long long)1 << 27;
 const unsigned long long MERGE_SIZE = 2;
+//const unsigned long long MERGE_OUT_SIZE = (unsigned long long)1 << 27;
 const unsigned long long MERGE_OUT_SIZE = 10;
 
 class CreatNumber {
