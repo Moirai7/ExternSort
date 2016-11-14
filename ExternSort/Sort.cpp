@@ -19,7 +19,7 @@ void CreatNumber::saveNumToFile(unsigned long long x1) {
     
     out.open("/Users/emma/Work/Sort/ExternSort/ExternSort/numbers",ios::out|ios::binary|ios::trunc);
     if (out.fail()) cout<<"error!"<<endl;
-    for (int i=0; i<NUM_SIZE; ++i) {
+    for (unsigned long long i=0; i<NUM_SIZE; ++i) {
         out.write((char*)&x1, sizeof(unsigned long long));
         //cout<<x1<<", ";//TODO delete
         
@@ -30,7 +30,7 @@ void CreatNumber::saveNumToFile(unsigned long long x1) {
 }
 
 //ExternSort
-void ExternSort::readData(ifstream &in,unsigned long long &arrNum,unsigned int size) {
+void ExternSort::readData(ifstream &in,unsigned long long &arrNum,unsigned long long size) {
     in.read(reinterpret_cast<char*>(&arrNum),sizeof(unsigned long long)*size);
 }
 
@@ -38,10 +38,10 @@ void ExternSort::memorySort() {
     in.open("/Users/emma/Work/Sort/ExternSort/ExternSort/numbers",ios::in|ios::binary);
     arrNum = new unsigned long long[READ_SIZE];
     
-    unsigned int index;
+    unsigned long long index;
     for (index=0; index<NUM_SIZE/READ_SIZE+1; ++index){
         if (NUM_SIZE%READ_SIZE==0 && index == NUM_SIZE/READ_SIZE) break;
-        unsigned int size = READ_SIZE;
+        unsigned long long size = READ_SIZE;
         if (index == NUM_SIZE/READ_SIZE)
             size = NUM_SIZE-index*READ_SIZE;
         
@@ -57,22 +57,22 @@ void ExternSort::memorySort() {
     return;
 }
 
-string ExternSort::geneFileName(unsigned int index) {
+string ExternSort::geneFileName(unsigned long long index) {
     std::stringstream sstm;
     sstm <<"/Users/emma/Work/Sort/ExternSort/ExternSort/temp/temp" << index;
     return sstm.str();
 }
 
-void ExternSort::saveNumToFile(string fileName,unsigned int size) {
+void ExternSort::saveNumToFile(string fileName,unsigned long long size) {
     ofstream out;
     out.open(fileName,ios::out|ios::binary|ios::trunc);
     out.write(reinterpret_cast<char*>(arrNum), sizeof(unsigned long long)*size);
     out.close();
 }
 
-int ExternSort::readBuffers(const int fileLength,ifstream& tempFile,unsigned long long& readBuffer){
+unsigned long long ExternSort::readBuffers(unsigned long long fileLength,ifstream& tempFile,unsigned long long& readBuffer){
     //if (tempFile.eof()) return -1;
-    int len = fileLength-(int)tempFile.tellg()/sizeof(unsigned long long);
+    unsigned long long len = fileLength-(unsigned long long)tempFile.tellg()/sizeof(unsigned long long);
     if (len==0)
         return 0;
     if (MERGE_SIZE<len){
@@ -84,12 +84,12 @@ int ExternSort::readBuffers(const int fileLength,ifstream& tempFile,unsigned lon
     }
 }
 
-void ExternSort::showAll(int fileLength,ifstream& tempFile){
+void ExternSort::showAll(unsigned long long fileLength,ifstream& tempFile){
     //if (tempFile.eof()) return -1;
     arrNum = new unsigned long long[fileLength];
     readData(tempFile,*arrNum,fileLength);
     cout<<fileLength<<" ";
-    for (int i=0; i<fileLength; ++i)
+    for (unsigned long long i=0; i<fileLength; ++i)
         cout<<arrNum[i]<<" ";
     delete [] arrNum;
     cout<<endl;
@@ -101,17 +101,17 @@ void ExternSort::mergeSort() {
     
     unsigned long long* outBuffer = new unsigned long long[MERGE_OUT_SIZE];
     unsigned long long** readBuffer = new unsigned long long*[countFile];
-    int outKey = -1;
-    int* readKey = new int[countFile];
-    for(int i=0; i<countFile; ++i) readKey[i]=0;
+    unsigned long long outKey = -1;
+    unsigned long long* readKey = new unsigned long long[countFile];
+    for(unsigned long long i=0; i<countFile; ++i) readKey[i]=0;
     
     ifstream* tempFiles = new ifstream[countFile];
-    int* fileLength = new int[countFile];
-    int* hasNext = new int[countFile];
-    for (int i=0; i<countFile; ++i) {
+    unsigned long long* fileLength = new unsigned long long[countFile];
+    unsigned long long* hasNext = new unsigned long long[countFile];
+    for (unsigned long long i=0; i<countFile; ++i) {
         readBuffer[i]=new unsigned long long[MERGE_SIZE];
         tempFiles[i].open(geneFileName(i),ios::in|ios::binary|ios::ate);
-        fileLength[i] = (int)tempFiles[i].tellg()/sizeof(unsigned long long);
+        fileLength[i] = (unsigned long long)tempFiles[i].tellg()/sizeof(unsigned long long);
         
         tempFiles[i].seekg(0);//TODO delete
         showAll(fileLength[i], tempFiles[i]);
@@ -125,14 +125,14 @@ void ExternSort::mergeSort() {
     ofstream out;
     out.open("/Users/emma/Work/Sort/ExternSort/ExternSort/result",ios::out|ios::binary|ios::trunc);
     
-    int minkey = 0;
+    unsigned long long minkey = 0;
     bool checkout = false;
     while(true) {
         unsigned long long min = readBuffer[minkey][readKey[minkey]];
         //cout<<min;
-        for (int i=0; i<countFile; ++i) {
+        for (unsigned long long i=0; i<countFile; ++i) {
             cout<<i<<" ";//TODO delete
-            for (int j=readKey[i]; j<hasNext[i]; ++j){//TODO delete
+            for (unsigned long long j=readKey[i]; j<hasNext[i]; ++j){//TODO delete
                 cout<<readBuffer[i][j]<<",";//TODO delete
             }//TODO delete
             cout<<endl;//TODO delete
@@ -162,7 +162,7 @@ void ExternSort::mergeSort() {
         if (outKey >= MERGE_OUT_SIZE) {
             out.write(reinterpret_cast<char*>(outBuffer), sizeof(unsigned long long)*outKey);
             //cout<<"start";
-            for (int i=0; i<=outKey; ++i) {
+            for (unsigned long long i=0; i<=outKey; ++i) {
                 //cout<<outBuffer[i]<<endl;
                 cout<<outBuffer[i]<<endl;
             }
@@ -170,14 +170,14 @@ void ExternSort::mergeSort() {
         }
         if (checkout== true) {
             out.write(reinterpret_cast<char*>(outBuffer), sizeof(unsigned long long)*outKey);
-            for (int i=0; i<=outKey; ++i) {
+            for (unsigned long long i=0; i<=outKey; ++i) {
                 //cout<<i<<" "<<outBuffer[i]<<endl;
                 cout<<outBuffer[i]<<endl;
             }
             break;
         }
     }
-    for (int i=0; i<countFile; ++i) {
+    for (unsigned long long i=0; i<countFile; ++i) {
         tempFiles[i].close();
         delete[] readBuffer[i];
     }
@@ -203,13 +203,13 @@ unsigned long long Result::hash(unsigned long long hn_1,unsigned long long yn){
 void Result::cal() {
     ifstream tempFiles;
     tempFiles.open("/Users/emma/Work/Sort/ExternSort/ExternSort/result",ios::in|ios::binary|ios::ate);
-    int fileLength = (int)tempFiles.tellg()/sizeof(unsigned long long);
+    unsigned long long fileLength = (unsigned long long)tempFiles.tellg()/sizeof(unsigned long long);
     tempFiles.seekg(0);
     
     unsigned long long h1;
     tempFiles.read((char*)&h1,sizeof(unsigned long long));
     unsigned long long yn;
-    for (int i=1; i<fileLength; ++i) {
+    for (unsigned long long i=1; i<fileLength; ++i) {
         tempFiles.read((char*)&yn,sizeof(unsigned long long));
         h1=hash(h1, yn);
     }

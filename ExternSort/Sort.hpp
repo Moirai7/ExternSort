@@ -36,15 +36,15 @@ class ExternSort {
 private:
     unsigned long long* arrNum;
     ifstream in;
-    unsigned int countFile;
+    unsigned long long countFile;
     
-    void readData(ifstream &in,unsigned long long &arrNum,unsigned int size);
+    void readData(ifstream &in,unsigned long long &arrNum,unsigned long long size);
     void memorySort();
-    string geneFileName(unsigned int index);
-    void saveNumToFile(string fileName,unsigned int size);
+    string geneFileName(unsigned long long index);
+    void saveNumToFile(string fileName,unsigned long long size);
     void mergeSort();
-    int readBuffers(const int fileLength,ifstream& tempFile,unsigned long long& readBuffer);
-    void showAll(int fileLength,ifstream& tempFile);
+    unsigned long long readBuffers(unsigned long long fileLength,ifstream& tempFile,unsigned long long& readBuffer);
+    void showAll(unsigned long long fileLength,ifstream& tempFile);
     static int cmp_int(const void *a, const void *b){
         if(*(unsigned long long*)a > *(unsigned long long*)b) return 1;
         if(*(unsigned long long*)a < *(unsigned long long*)b) return -1;
