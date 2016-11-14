@@ -10,8 +10,8 @@
 
 //CreatNumber
 unsigned long long CreatNumber::calNum(unsigned long long xn) {
-    //return (3*xn+5) % 1125899906842679;
-    return (3*xn+5) % 100;
+    return (3*xn+5) % (unsigned long long)1125899906842679;
+    //return (3*xn+5) % 100;
 }
 
 void CreatNumber::saveNumToFile(unsigned long long x1) {
@@ -197,7 +197,7 @@ void ExternSort::sort() {
 }
 
 unsigned long long Result::hash(unsigned long long hn_1,unsigned long long yn){
-    return (hn_1*3+yn)%1125899906842679;
+    return (hn_1*3 + yn)%(unsigned long long)1125899906842679;
 }
 
 void Result::cal() {
