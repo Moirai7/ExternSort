@@ -113,8 +113,8 @@ void ExternSort::mergeSort() {
         tempFiles[i].open(geneFileName(i),ios::in|ios::binary|ios::ate);
         fileLength[i] = (int)tempFiles[i].tellg()/sizeof(unsigned long long);
         
-        //tempFiles[i].seekg(0);//TODO delete
-        //showAll(fileLength[i], tempFiles[i]);
+        tempFiles[i].seekg(0);//TODO delete
+        showAll(fileLength[i], tempFiles[i]);
        
         tempFiles[i].seekg(0);
         hasNext[i] = readBuffers(fileLength[i],tempFiles[i],*readBuffer[i]);
@@ -179,14 +179,14 @@ void ExternSort::mergeSort() {
     }
     for (int i=0; i<countFile; ++i) {
         tempFiles[i].close();
-        //delete[] readBuffer[i];
+        delete[] readBuffer[i];
     }
-    //delete[] readBuffer;
-    //delete[] outBuffer;
-    //delete[] readKey;
-    //delete[] tempFiles;
-    //delete[] fileLength;
-    //delete[] hasNext;
+    delete[] readBuffer;
+    delete[] outBuffer;
+    delete[] readKey;
+    delete[] tempFiles;
+    delete[] fileLength;
+    delete[] hasNext;
     out.close();
     
 }

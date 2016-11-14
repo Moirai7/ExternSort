@@ -265,38 +265,6 @@
             timestampString = "500734431.659964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "ExternSort::mergeSort()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ExternSort/Sort.cpp"
-            timestampString = "500734431.659964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "ExternSort::mergeSort()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ExternSort/Sort.cpp"
-            timestampString = "500734431.659964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "162"
             endingLineNumber = "162"
             landmarkName = "ExternSort::mergeSort()"
@@ -316,38 +284,6 @@
             startingLineNumber = "144"
             endingLineNumber = "144"
             landmarkName = "ExternSort::mergeSort()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ExternSort/Sort.cpp"
-            timestampString = "500734431.659964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "ExternSort::mergeSort()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ExternSort/Sort.cpp"
-            timestampString = "500734431.659964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "Result::cal()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
