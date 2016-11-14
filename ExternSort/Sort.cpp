@@ -113,8 +113,8 @@ void ExternSort::mergeSort() {
         tempFiles[i].open(geneFileName(i),ios::in|ios::binary|ios::ate);
         fileLength[i] = (unsigned long long)tempFiles[i].tellg()/sizeof(unsigned long long);
         
-        tempFiles[i].seekg(0);//TODO delete
-        showAll(fileLength[i], tempFiles[i]);
+        //tempFiles[i].seekg(0);//TODO delete
+        //showAll(fileLength[i], tempFiles[i]);
        
         tempFiles[i].seekg(0);
         hasNext[i] = readBuffers(fileLength[i],tempFiles[i],*readBuffer[i]);
@@ -131,17 +131,17 @@ void ExternSort::mergeSort() {
         unsigned long long min = readBuffer[minkey][readKey[minkey]];
         //cout<<min;
         for (unsigned long long i=0; i<countFile; ++i) {
-            cout<<i<<" ";//TODO delete
-            for (unsigned long long j=readKey[i]; j<hasNext[i]; ++j){//TODO delete
-                cout<<readBuffer[i][j]<<",";//TODO delete
-            }//TODO delete
-            cout<<endl;//TODO delete
+        //    cout<<i<<" ";//TODO delete
+        //    for (unsigned long long j=readKey[i]; j<hasNext[i]; ++j){//TODO delete
+        //        cout<<readBuffer[i][j]<<",";//TODO delete
+        //    }//TODO delete
+        //    cout<<endl;//TODO delete
             if(hasNext[i]>readKey[i] && readBuffer[i][readKey[i]]<min) {
                 min = readBuffer[i][readKey[i]];
                 minkey = i;
             }
         }
-        cout<<endl;
+        //cout<<endl;
         outBuffer[++outKey] = min;
         ++readKey[minkey];
         if (readKey[minkey] >= hasNext[minkey]) {
@@ -162,24 +162,24 @@ void ExternSort::mergeSort() {
         if (outKey >= MERGE_OUT_SIZE) {
             out.write(reinterpret_cast<char*>(outBuffer), sizeof(unsigned long long)*outKey);
             //cout<<"start";
-            for (unsigned long long i=0; i<=outKey; ++i) {
-                //cout<<outBuffer[i]<<endl;
-                cout<<outBuffer[i]<<endl;
-            }
+            //for (unsigned long long i=0; i<=outKey; ++i) {
+            //    //cout<<outBuffer[i]<<endl;
+            //    cout<<outBuffer[i]<<endl;
+            //}
             outKey = -1;
         }
         if (checkout== true) {
             out.write(reinterpret_cast<char*>(outBuffer), sizeof(unsigned long long)*outKey);
-            for (unsigned long long i=0; i<=outKey; ++i) {
-                //cout<<i<<" "<<outBuffer[i]<<endl;
-                cout<<outBuffer[i]<<endl;
-            }
+            //for (unsigned long long i=0; i<=outKey; ++i) {
+            //    //cout<<i<<" "<<outBuffer[i]<<endl;
+            //    cout<<outBuffer[i]<<endl;
+            //}
             break;
         }
     }
     for (unsigned long long i=0; i<countFile; ++i) {
         tempFiles[i].close();
-        delete[] readBuffer[i];
+        //delete[] readBuffer[i];
     }
     delete[] readBuffer;
     delete[] outBuffer;
@@ -219,9 +219,12 @@ void Result::cal() {
 int main(){
     CreatNumber cn;
     cn.saveNumToFile(2016213633);
+    cout<<"end";
     ExternSort es;
     es.sort();
-    //Result res;
-    //res.cal();
+    cout<<"end";
+    Result res;
+    res.cal();
+    cout<<"end";
     return 1;
 }
