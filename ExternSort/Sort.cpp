@@ -16,17 +16,20 @@ unsigned long long CreatNumber::calNum(unsigned long long xn) {
 
 void CreatNumber::saveNumToFile(unsigned long long x1) {
     ofstream out;
+    ofstream out2;
     
     out.open("/Users/emma/Work/Sort/ExternSort/ExternSort/numbers",ios::out|ios::binary|ios::trunc);
+    out.open("/Users/emma/Work/Sort/ExternSort/ExternSort/numbers_show",ios::out|ios::binary|ios::trunc);
     if (out.fail()) cout<<"error!"<<endl;
     for (unsigned long long i=0; i<NUM_SIZE; ++i) {
         out.write((char*)&x1, sizeof(unsigned long long));
-        cout<<x1<<endl;//TODO delete
+        out2<<x1<<endl;//TODO delete
         
         x1 = calNum(x1);
     }
     //cout<<endl;//TODO delete
     out.close();
+    out2.close();
 }
 
 //ExternSort
@@ -155,7 +158,7 @@ void ExternSort::mergeSort() {
             }
         }
         if (outKey >= MERGE_OUT_SIZE) {
-            out.write(reinterpret_cast<char*>(outBuffer), sizeof(unsigned long long)*outKey);
+            out.write(reinterpret_cast<char*>(outBuffer), sizeof(unsigned long long)*(outKey+1));
             //cout<<"start";
             for (unsigned long long i=0; i<=outKey; ++i) {
                 out2<<outBuffer[i]<<endl;
@@ -164,7 +167,7 @@ void ExternSort::mergeSort() {
             outKey = -1;
         }
         if (checkout== true) {
-            out.write(reinterpret_cast<char*>(outBuffer), sizeof(unsigned long long)*outKey);
+            out.write(reinterpret_cast<char*>(outBuffer), sizeof(unsigned long long)*(outKey+1));
             for (unsigned long long i=0; i<=outKey; ++i) {
                 out2<<outBuffer[i]<<endl;
                 //cout<<outBuffer[i]<<endl;
@@ -212,7 +215,7 @@ void Result::cal() {
     unsigned long long h1;
     tempFiles.read((char*)&h1,sizeof(unsigned long long));
     unsigned long long yn;
-    for (unsigned long long i=0; i<NUM_SIZE; ++i) {
+    for (unsigned long long i=1; i<NUM_SIZE; ++i) {
         tempFiles.read((char*)&yn,sizeof(unsigned long long));
         out<<h1<<endl;
         h1=hash(h1, yn);
@@ -223,14 +226,14 @@ void Result::cal() {
 }
 
 int main(){
-    //CreatNumber cn;
-    //cn.saveNumToFile(2016213633);
-    //cout<<"step1!"<<endl;
+    CreatNumber cn;
+    cn.saveNumToFile(2016213633);
+    cout<<"step1!"<<endl;
     ExternSort es;
     es.sort();
     cout<<"step2!"<<endl;
-    //Result res;
-    //res.cal();
-    //cout<<"step3!"<<endl;
+    Result res;
+    res.cal();
+    cout<<"step3!"<<endl;
     return 1;
 }
