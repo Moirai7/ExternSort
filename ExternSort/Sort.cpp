@@ -16,20 +16,20 @@ unsigned long long CreatNumber::calNum(unsigned long long xn) {
 
 void CreatNumber::saveNumToFile(unsigned long long x1) {
     ofstream out;
-    ofstream out2;
+    //ofstream out2;
     
     out.open("/Users/emma/Work/Sort/ExternSort/ExternSort/numbers",ios::out|ios::binary|ios::trunc);
-    out.open("/Users/emma/Work/Sort/ExternSort/ExternSort/numbers_show",ios::out|ios::binary|ios::trunc);
+    //out2.open("/Users/emma/Work/Sort/ExternSort/ExternSort/numbers_show",ios::out|ios::binary|ios::trunc);
     if (out.fail()) cout<<"error!"<<endl;
     for (unsigned long long i=0; i<NUM_SIZE; ++i) {
         out.write((char*)&x1, sizeof(unsigned long long));
-        out2<<x1<<endl;//TODO delete
+        //out2<<x1<<endl;//TODO delete
         
         x1 = calNum(x1);
     }
     //cout<<endl;//TODO delete
     out.close();
-    out2.close();
+    //out2.close();
 }
 
 //ExternSort
@@ -70,6 +70,7 @@ string ExternSort::geneFileName(unsigned long long index) {
 void ExternSort::saveNumToFile(string fileName,unsigned long long size) {
     ofstream out;
     out.open(fileName,ios::out|ios::binary|ios::trunc);
+    if (out.fail()) cout<<"error!"<<endl;
     out.write(reinterpret_cast<char*>(arrNum), sizeof(unsigned long long)*size);
     out.close();
 }
@@ -128,8 +129,8 @@ void ExternSort::mergeSort() {
     
     ofstream out;
     out.open("/Users/emma/Work/Sort/ExternSort/ExternSort/result",ios::out|ios::binary|ios::trunc);
-    ofstream out2;
-    out2.open("/Users/emma/Work/Sort/ExternSort/ExternSort/result_show",ios::out|ios::binary|ios::trunc);
+    //ofstream out2;
+    //out2.open("/Users/emma/Work/Sort/ExternSort/ExternSort/result_show",ios::out|ios::binary|ios::trunc);
     unsigned long long minkey = 0;
     bool checkout = false;
     while(true) {
@@ -160,18 +161,18 @@ void ExternSort::mergeSort() {
         if (outKey >= MERGE_OUT_SIZE) {
             out.write(reinterpret_cast<char*>(outBuffer), sizeof(unsigned long long)*(outKey+1));
             //cout<<"start";
-            for (unsigned long long i=0; i<=outKey; ++i) {
-                out2<<outBuffer[i]<<endl;
+            //for (unsigned long long i=0; i<=outKey; ++i) {
+            //    out2<<outBuffer[i]<<endl;
                 //cout<<outBuffer[i]<<endl;
-            }
+            //}
             outKey = -1;
         }
         if (checkout== true) {
             out.write(reinterpret_cast<char*>(outBuffer), sizeof(unsigned long long)*(outKey+1));
-            for (unsigned long long i=0; i<=outKey; ++i) {
-                out2<<outBuffer[i]<<endl;
-                //cout<<outBuffer[i]<<endl;
-            }
+            //for (unsigned long long i=0; i<=outKey; ++i) {
+            //    out2<<outBuffer[i]<<endl;
+            //    //cout<<outBuffer[i]<<endl;
+            //}
             break;
         }
     }
@@ -186,7 +187,7 @@ void ExternSort::mergeSort() {
     delete[] fileLength;
     delete[] hasNext;
     out.close();
-    out2.close();
+    //out2.close();
 }
 
 void ExternSort::sort() {
@@ -209,20 +210,20 @@ void Result::cal() {
     //cout<<fileLength;
     //return;
     tempFiles.seekg(0);
-    ofstream out;
-    out.open("/Users/emma/Work/Sort/ExternSort/ExternSort/result_hash",ios::out|ios::trunc);
+    //ofstream out;
+    //out.open("/Users/emma/Work/Sort/ExternSort/ExternSort/result_hash",ios::out|ios::trunc);
     
     unsigned long long h1;
     tempFiles.read((char*)&h1,sizeof(unsigned long long));
     unsigned long long yn;
     for (unsigned long long i=1; i<NUM_SIZE; ++i) {
         tempFiles.read((char*)&yn,sizeof(unsigned long long));
-        out<<h1<<endl;
+        //out<<h1<<endl;
         h1=hash(h1, yn);
     }
-    out<<h1;
+    //out<<h1;
     cout<<h1<<endl;
-    out.close();
+    //out.close();
 }
 
 int main(){

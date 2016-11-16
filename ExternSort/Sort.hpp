@@ -19,9 +19,9 @@
 using namespace std;
 
 const unsigned long long NUM_SIZE = (unsigned long long)1 << 31;
-const unsigned long long READ_SIZE = (unsigned long long)1 << 28;
-const unsigned long long MERGE_SIZE = (unsigned long long)1 << 27;
-const unsigned long long MERGE_OUT_SIZE = (unsigned long long)1 << 27;
+const unsigned long long READ_SIZE = (unsigned long long)1 << 27;
+const unsigned long long MERGE_SIZE = (unsigned long long)1 << 26;
+const unsigned long long MERGE_OUT_SIZE = (unsigned long long)1 << 26;
 //const unsigned long long NUM_SIZE = 113;
 //const unsigned long long READ_SIZE = 3;
 //const unsigned long long MERGE_SIZE = 2;
